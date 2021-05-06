@@ -1,0 +1,4 @@
+R5T.D0056.Base - Base service definitions library for forensic service collection (IServiceCollection) investigation related services.
+
+Goals
+
