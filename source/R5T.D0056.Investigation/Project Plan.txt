@@ -1,0 +1,4 @@
+R5T.D0056.Investigation - Investigation-related types library for forensic service collection (IServiceCollection) functionality.
+
+Goals
+

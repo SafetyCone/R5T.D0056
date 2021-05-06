@@ -1,0 +1,4 @@
+R5T.D0056.Json - Json-related service implementations library for forensic service collection (IServiceCollection) investigations.
+
+Goals
+

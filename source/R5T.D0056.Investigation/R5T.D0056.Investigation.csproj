@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\R5T.Dacia\source\R5T.Dacia\R5T.Dacia.csproj" />
-    <ProjectReference Include="..\R5T.D0056.Types\R5T.D0056.Types.csproj" />
+    <ProjectReference Include="..\R5T.D0056.Default\R5T.D0056.Default.csproj" />
+    <ProjectReference Include="..\R5T.D0056.Json\R5T.D0056.Json.csproj" />
   </ItemGroup>
 
 </Project>

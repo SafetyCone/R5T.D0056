@@ -9,13 +9,13 @@ using R5T.Magyar.IO;
 
 namespace R5T.D0056.Default
 {
-    public class ServiceCollectionDescriber : IServiceCollectionDescriber
+    public class TextFileServiceCollectionDescriber : IServiceCollectionDescriber
     {
         private IServiceCollectionDescriptionFilePathProvider ServiceCollectionDescriptionFilePathProvider { get; }
         private IServiceDescriptorDescriber ServiceDescriptorDescriber { get; }
 
 
-        public ServiceCollectionDescriber(
+        public TextFileServiceCollectionDescriber(
             IServiceCollectionDescriptionFilePathProvider serviceCollectionDescriptionFilePathProvider,
             IServiceDescriptorDescriber serviceDescriptorDescriber)
         {
@@ -31,6 +31,10 @@ namespace R5T.D0056.Default
 
             using (var fileWriter = StreamWriterHelper.NewWrite(serviceCollectionDescriptionFilePath))
             {
+                var serviceCount = services.Count;
+
+                await fileWriter.WriteLineAsync($"Services count: {serviceCount}\n\n");
+
                 foreach (var serviceDescriptor in servicesInOrder)
                 {
                     var description = await this.ServiceDescriptorDescriber.Describe(serviceDescriptor);

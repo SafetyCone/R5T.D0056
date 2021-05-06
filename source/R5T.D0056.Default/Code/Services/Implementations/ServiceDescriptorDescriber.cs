@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,12 +13,16 @@ namespace R5T.D0056.Default
         {
             var stringBuilder = new StringBuilder();
 
+            var serviceTypeStandardRepresentation = serviceDescriptor.GetServiceTypeStandardRepresentation();
+            var implementationTypeStandardRepresentation = serviceDescriptor.GetImplementationTypeStandardRepresentation();
+            var lifetimeStandardRepresentation = serviceDescriptor.GetLifetimeStandardRepresentation();
+
             stringBuilder
                 .AppendLine("-----")
-                .AppendLine($"Service Type: {serviceDescriptor.ServiceType.FullName}")
-                .AppendLine($"Implementation Type: {(serviceDescriptor.ImplementationType == null ? "<null>" : serviceDescriptor.ImplementationType.FullName)}")
-                .AppendLine($"{nameof(serviceDescriptor.Lifetime)}: {serviceDescriptor.Lifetime}")
-                .AppendLine($"Implementation Instance: {(serviceDescriptor.ImplementationInstance == null ? "<null>" : serviceDescriptor.ImplementationInstance.ToString())}")
+                .AppendLine($"Service Type: {serviceTypeStandardRepresentation}")
+                .AppendLine($"Implementation Type: {implementationTypeStandardRepresentation}")
+                .AppendLine($"{nameof(serviceDescriptor.Lifetime)}: {lifetimeStandardRepresentation}")
+                .AppendLine($"Implementation Instance: {serviceDescriptor.ImplementationInstance?.ToString() ?? "<null>"}")
                 .AppendLine($"Implementation Factory: {serviceDescriptor.ImplementationFactory}")
                 ;
 

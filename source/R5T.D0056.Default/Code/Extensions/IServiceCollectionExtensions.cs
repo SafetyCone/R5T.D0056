@@ -50,14 +50,14 @@ namespace R5T.D0056.Default
         }
 
         /// <summary>
-        /// Adds the <see cref="ServiceCollectionDescriber"/> implementation of <see cref="IServiceCollectionDescriber"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="TextFileServiceCollectionDescriber"/> implementation of <see cref="IServiceCollectionDescriber"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static IServiceCollection AddServiceCollectionDescriber(this IServiceCollection services,
+        public static IServiceCollection AddTextFileServiceCollectionDescriber(this IServiceCollection services,
             IServiceAction<IServiceCollectionDescriptionFilePathProvider> serviceCollectionDescriptionFilePathProviderAction,
             IServiceAction<IServiceDescriptorDescriber> serviceDescriptorDescriberAction)
         {
             services
-                .AddSingleton<IServiceCollectionDescriber, ServiceCollectionDescriber>()
+                .AddSingleton<IServiceCollectionDescriber, TextFileServiceCollectionDescriber>()
                 .Run(serviceCollectionDescriptionFilePathProviderAction)
                 .Run(serviceDescriptorDescriberAction)
                 ;
@@ -66,13 +66,13 @@ namespace R5T.D0056.Default
         }
 
         /// <summary>
-        /// Adds the <see cref="ServiceCollectionDescriber"/> implementation of <see cref="IServiceCollectionDescriber"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="TextFileServiceCollectionDescriber"/> implementation of <see cref="IServiceCollectionDescriber"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static IServiceAction<IServiceCollectionDescriber> AddServiceCollectionDescriberAction(this IServiceCollection services,
+        public static IServiceAction<IServiceCollectionDescriber> AddTextFileServiceCollectionDescriberAction(this IServiceCollection services,
             IServiceAction<IServiceCollectionDescriptionFilePathProvider> serviceCollectionDescriptionFilePathProviderAction,
             IServiceAction<IServiceDescriptorDescriber> serviceDescriptorDescriberAction)
         {
-            var serviceAction = ServiceAction.New<IServiceCollectionDescriber>(() => services.AddServiceCollectionDescriber(
+            var serviceAction = ServiceAction.New<IServiceCollectionDescriber>(() => services.AddTextFileServiceCollectionDescriber(
                 serviceCollectionDescriptionFilePathProviderAction,
                 serviceDescriptorDescriberAction));
 
@@ -85,12 +85,12 @@ namespace R5T.D0056.Default
             IServiceAction<IServiceCollectionDescriptionFilePathProvider> ServiceCollectionDescriptionFilePathProviderAction,
             IServiceAction<IServiceDescriptorDescriber> ServiceDescriptorDescriberAction
             )
-        AddServiceCollectionDescriberAction(this IServiceCollection services, string serviceCollectionDescriptionFilePath)
+            AddTextFileServiceCollectionDescriberAction(this IServiceCollection services, string serviceCollectionDescriptionFilePath)
         {
             var serviceCollectionDescriptionFilePathProviderAction = services.AddConstructorBasedServiceCollectionDescriptionFilePathProviderAction(serviceCollectionDescriptionFilePath);
             var serviceDescriptorDescriberAction = services.AddServiceDescriptorDescriberAction();
 
-            var serviceCollectionDescriberAction = services.AddServiceCollectionDescriberAction(
+            var serviceCollectionDescriberAction = services.AddTextFileServiceCollectionDescriberAction(
                 serviceCollectionDescriptionFilePathProviderAction,
                 serviceDescriptorDescriberAction);
 
@@ -100,6 +100,25 @@ namespace R5T.D0056.Default
                 serviceCollectionDescriptionFilePathProviderAction,
                 serviceDescriptorDescriberAction
                 );
+        }
+
+        /// <summary>
+        /// Adds the <see cref="ServiceDescriptorDescriptionConverter"/> implementation of <see cref="IServiceDescriptorDescriptionConverter"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// </summary>
+        public static IServiceCollection AddServiceDescriptorDescriptionConverter(this IServiceCollection services)
+        {
+            services.AddSingleton<IServiceDescriptorDescriptionConverter, ServiceDescriptorDescriptionConverter>();
+
+            return services;
+        }
+
+        /// <summary>
+        /// Adds the <see cref="ServiceDescriptorDescriptionConverter"/> implementation of <see cref="IServiceDescriptorDescriptionConverter"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// </summary>
+        public static IServiceAction<IServiceDescriptorDescriptionConverter> AddServiceDescriptorDescriptionConverterAction(this IServiceCollection services)
+        {
+            var serviceAction = ServiceAction.New<IServiceDescriptorDescriptionConverter>(() => services.AddServiceDescriptorDescriptionConverter());
+            return serviceAction;
         }
     }
 }
