@@ -4,10 +4,13 @@ using System.Threading.Tasks;
 
 using Microsoft.Extensions.DependencyInjection;
 
+using R5T.T0064;
+
 
 namespace R5T.D0056.Default
 {
-    public class ServiceDescriptorDescriber : IServiceDescriptorDescriber
+    [ServiceImplementationMarker]
+    public class ServiceDescriptorDescriber : IServiceDescriptorDescriber, IServiceImplementation
     {
         public Task<string> Describe(ServiceDescriptor serviceDescriptor)
         {

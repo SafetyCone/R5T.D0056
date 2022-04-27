@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using R5T.T0064;
+
 
 namespace R5T.D0056.Default
 {
-    public class ConstructorBasedServiceCollectionDescriptionFilePathProvider : IServiceCollectionDescriptionFilePathProvider
+    [ServiceImplementationMarker]
+    public class ConstructorBasedServiceCollectionDescriptionFilePathProvider : IServiceCollectionDescriptionFilePathProvider, IServiceImplementation
     {
         private string DescriptionFilePath { get; }
 
 
         public ConstructorBasedServiceCollectionDescriptionFilePathProvider(
-            string descriptionFilePath)
+            [NotServiceComponent] string descriptionFilePath)
         {
             this.DescriptionFilePath = descriptionFilePath;
         }

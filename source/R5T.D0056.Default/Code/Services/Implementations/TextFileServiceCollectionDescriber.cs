@@ -1,15 +1,17 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using R5T.Magyar.IO;
+using R5T.T0064;
 
 
 namespace R5T.D0056.Default
 {
-    public class TextFileServiceCollectionDescriber : IServiceCollectionDescriber
+    [ServiceImplementationMarker]
+    public class TextFileServiceCollectionDescriber : IServiceCollectionDescriber, IServiceImplementation
     {
         private IServiceCollectionDescriptionFilePathProvider ServiceCollectionDescriptionFilePathProvider { get; }
         private IServiceDescriptorDescriber ServiceDescriptorDescriber { get; }

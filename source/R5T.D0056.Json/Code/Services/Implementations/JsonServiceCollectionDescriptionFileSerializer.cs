@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-using R5T.Magyar.IO;
-
-using System.Collections.Generic;
+using R5T.T0064;
 
 
 namespace R5T.D0056.Json
 {
-    public class JsonServiceCollectionDescriptionFileSerializer : IServiceCollectionDescriptionFileSerializer
+    [ServiceImplementationMarker]
+    public class JsonServiceCollectionDescriptionFileSerializer : IServiceCollectionDescriptionFileSerializer, IServiceImplementation
     {
         public async Task Serialize(string filePath, IEnumerable<ServiceDescriptorDescription> descriptions)
         {

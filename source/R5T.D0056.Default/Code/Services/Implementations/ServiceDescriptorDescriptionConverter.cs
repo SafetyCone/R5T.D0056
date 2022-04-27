@@ -5,10 +5,13 @@ using System.Threading.Tasks;
 
 using Microsoft.Extensions.DependencyInjection;
 
+using R5T.T0064;
+
 
 namespace R5T.D0056.Default
 {
-    public class ServiceDescriptorDescriptionConverter : IServiceDescriptorDescriptionConverter
+    [ServiceImplementationMarker]
+    public class ServiceDescriptorDescriptionConverter : IServiceDescriptorDescriptionConverter, IServiceImplementation
     {
         public Task<IEnumerable<ServiceDescriptorDescription>> Convert(IServiceCollection services)
         {
