@@ -9,7 +9,7 @@ using R5T.T0064;
 namespace R5T.D0056
 {
     /// <summary>
-    /// Describes a <see cref="ServiceDescriptor/> to a <see cref="TextWriter"/>.
+    /// Describes a <see cref="ServiceDescriptor"/> to a <see cref="System.IO.TextWriter"/>.
     /// </summary>
     [ServiceDefinitionMarker]
     public interface IServiceDescriptorDescriber : IServiceDefinition
